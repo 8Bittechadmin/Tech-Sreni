@@ -1,3 +1,4 @@
+
 /*
 * Template Name: Learner
 * Template Author: Untree.co
@@ -15,6 +16,10 @@ body {
   font-weight: 300;
   font-size: 15px;
   background: #EEEEEE; }
+  /* @media (min-width: 1080px) {
+    body {
+      font-size: 15px;
+      width: 1498px; } } */
   body:before {
     -webkit-transition: .3s all ease-in-out;
     -o-transition: .3s all ease-in-out;
@@ -505,7 +510,7 @@ h1, h2, h3, h4, h5,
         .site-mobile-menu .site-mobile-menu-header .site-mobile-menu-logo a:hover {
           text-decoration: none; }
   .site-mobile-menu .site-mobile-menu-body {
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     -webkit-overflow-scrolling: touch;
     position: relative;
     padding: 0 20px 20px 20px;
@@ -629,7 +634,7 @@ h1, h2, h3, h4, h5,
   background-repeat: no-repeat;
   background-position: top;
   background-position: center center;
-  background: #E5E5E5; }
+  background: #E5E5E5 !important; }
   .site-blocks-cover.overlay {
     position: relative; }
     .site-blocks-cover.overlay:before {
@@ -652,7 +657,7 @@ h1, h2, h3, h4, h5,
     height: calc(20vh); }
   .site-blocks-cover h1 {
     font-size: 3rem;
-    font-weight: 400;
+    font-weight: 300;
     color: #21325E;
     text-transform: uppercase; }
     @media (max-width: 991.98px) {
@@ -1762,3 +1767,383 @@ h1, h2, h3, h4, h5,
 
 .subcription-form button {
   border-radius: 0px 4px 4px 0px !important; }
+
+/* Services Section */
+#services-section {
+  background-color: #fff;
+  padding: 60px 20px;
+  color: #213268; /* Blue shade */
+}
+
+/* Tabs (Menu Bar) */
+.tabs {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #213268;
+  border-radius: 5px 5px 0 0;
+  padding: 10px 15px;
+  gap: 15px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tab {
+  padding: 10px 20px;
+  background-color: transparent;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-bottom: 3px solid transparent; /* Default inactive state */
+  cursor: pointer;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.tab.active {
+  border-bottom: 3px solid #f9c74f; /* Highlight active tab */
+  color: #f9c74f; /* Golden accent for active */
+}
+
+.tab:hover {
+  color: #f9c74f; /* Hover effect */
+}
+
+/* Mini Window */
+.mini-window {
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  background-color: #f9f9f9;
+  position: relative;
+  overflow: visible;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+/* Content Areas */
+.content {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.content.hidden {
+  display: none;
+}
+
+.text {
+  flex: 1;
+  margin-left: 3%
+}
+
+.text h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #213268;
+}
+
+.text p {
+  font-size: 14px;
+  color: #555;
+}
+
+.image {
+  flex: 1;
+  position: relative;
+}
+
+.image img {
+  width: 60%;
+  position: absolute;
+  top: -196px; /* Moves the image upward to break out */
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0); /* Shadow for depth */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+  margin-left: 55%;
+  
+}
+
+.image img:hover {
+  transform: translateY(-10px); /* Lift the image on hover */
+  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0); /* Stronger shadow on hover */
+}
+
+/* Button Styling */
+.btn {
+  background-color: #213268;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  transition: color 0.4s ease; /* Smooth text color transition */
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #f9c74f; /* Sliding color */
+  transition: left 0.4s ease;
+  z-index: -1; /* Ensure it slides under the text */
+}
+
+.btn:hover::before {
+  left: 0; /* Slide the color in */
+}
+
+.btn:hover {
+  color: #213268; /* Change text color on hover */
+}
+
+.get-quote-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #213268;
+  color: #fff;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.get-quote-btn:hover {
+  background-color: #43588c;
+}
+
+
+/* ENQUIRY FORM */
+/* Section Header */
+.section-header {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #213268;
+}
+
+/* Form Container */
+.form-container {
+  width: 600px;
+  margin: 0 auto;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #213268;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-group textarea {
+  resize: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #213268;
+}
+
+/* Required Field Indicator */
+.required {
+  color: #f00;
+}
+
+/* OTP Section */
+.otp-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.otp-btn {
+  padding: 8px 15px;
+  background-color: #213268;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.otp-btn:hover {
+  background-color: #43588c;
+}
+
+/* Submit Button */
+.btn {
+  background-color: #213268;
+  color: #fff;
+  border: none;
+  padding: 10px 0px 10px 1px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 25%;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn:hover {
+  background-color: #43588c;
+}
+
+
+/* FOOTER */
+
+#enquiry-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0px;
+  margin-left: -1%;
+}
+
+.flex-item {
+  width: 44%; /* Adjust width as needed */
+}
+
+.site-footer {
+  background-color: #ffffff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container {
+  padding: 20px;
+  background-color: #fff; /* Optional: Add background for contrast */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+p.service-text-color {
+  color: #213268;
+}
+
+h3.service-text-color {
+  color: #213268;
+}
+
+ul.service-text-color {
+  color: #213268;
+}
+
+
+/* Prevent horizontal overflow */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body, html {
+    overflow-x: hidden;
+}
+
+/* ......................................................MEDIA QUERIES....................................... */
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 992px) {
+    .site-navbar .site-navigation {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .tabs {
+        flex-direction: column;
+    }
+    .content .image img {
+        width: 100%;
+        position: static;
+        box-shadow: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .site-navbar {
+        font-size: 14px;
+    }
+    .tabs {
+        padding: 5px;
+    }
+    .text h3 {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 576px) {
+    .mini-window {
+        flex-direction: column;
+    }
+    .text, .image {
+        flex: unset;
+        width: 100%;
+    }
+    .text p {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-navbar {
+        font-size: 12px;
+    }
+    .tabs {
+        padding: 5px;
+    }
+    .text h3 {
+        font-size: 16px;
+    }
+    .text p {
+        font-size: 12px;
+    }
+    .image img {
+        width: 100%;
+        position: static;
+        box-shadow: none;
+    }
+    .btn {
+        padding: 8px 15px;
+    }
+    .form-container {
+        width: 100%;
+    }
+    .flex-item {
+        width: 100%;
+    }
+}
