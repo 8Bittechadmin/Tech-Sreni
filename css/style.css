@@ -1871,6 +1871,32 @@ h1, h2, h3, h4, h5,
   box-shadow: 0px 12px 20px rgba(0, 0, 0, 0); /* Stronger shadow on hover */
 }
 
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .tabs {
+    gap: 5px; /* Reduce gap between tabs */
+    padding: 8px; /* Reduce padding */
+  }
+
+  .tab {
+    font-size: 12px; /* Smaller font size for tabs */
+    padding: 8px 15px; /* Adjust padding */
+  }
+
+  .content {
+    flex-direction: column; /* Stack text and image vertically */
+    align-items: center;
+  }
+
+  .text h3 {
+    font-size: 18px; /* Adjust heading size */
+  }
+
+  .text p {
+    font-size: 14px; /* Adjust paragraph size */
+  }
+}
+
 /* Button Styling */
 .btn {
   background-color: #213268;
@@ -2085,8 +2111,9 @@ body, html {
         justify-content: center;
     }
     .tabs {
-        flex-direction: column;
-    }
+      flex-direction: column;
+  }
+
     .content .image img {
         width: 100%;
         position: static;
