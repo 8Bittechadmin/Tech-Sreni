@@ -32,10 +32,302 @@
 
   <link rel="stylesheet" href="css/style.css">
   <title>Tech Sreni &mdash; Digital Solutions</title>
+
+  <style>
+    /* Default styling (Desktop view) */
+    #enquiry-section {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  
+    .form-container {
+      order: 0; /* Form comes first by default */
+      flex: 1 1 50%; /* Default width */
+    }
+  
+    .details-section {
+      order: 1;
+      flex: 1 1 50%;
+    }
+  
+    /* Mobile styling */
+    @media (max-width: 768px) {
+      .form-container {
+        order: 0; /* Form will appear first */
+        width: 100%; /* Full width on mobile */
+      }
+  
+      .details-section {
+        order: 1; /* Details will appear after the form */
+        width: 100%; /* Full width on mobile */
+      }
+    }
+
+    /* Button to open the popup */
+    .open-popup-btn {
+      padding: 12px 20px;
+      background-color: transparent;
+      color: #303030;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .open-popup-btn:hover {
+      background-color: none;
+      outline: none;
+    }
+
+    /* Popup styling */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 400px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      z-index: 1000;
+      overflow: hidden;
+    }
+
+    .popup iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+    }
+
+    /* Close button */
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 18px;
+      color: black;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: #1DB954;
+    }
+
+    /* Overlay */
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 999;
+    }
+
+    .whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-decoration: none;
+      z-index: 1000;
+    }
+
+    .whatsapp-button img {
+      width: 35px;
+      height: 35px;
+    }
+
+    .whatsapp-button:hover {
+      background-color: #1EBE56;
+      cursor: pointer;
+    }
+
+    /* chatbot */
+    /* Chatbot Icon */
+    .chatbot-icon {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background-color: #21325E;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .chatbot-icon img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .chatbot-icon:hover {
+      background-color: #17213e;
+    }
+
+    /* Chatbot Container (Initially Hidden) */
+    .chatbot-container {
+      display: none;
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 350px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      z-index: 1001;
+    }
+
+    @media (max-width: 768px) {
+      .chatbot-container {
+        width: 330px;
+        /* height: 350px; */
+      }
+    }
+
+    h4 {
+      background-color: #21325E;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      margin: 0;
+      font-size: medium;
+    }
+
+    /* Close Button */
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 18px;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: red;
+    }
+
+    .chat-window {
+      display: flex;
+      flex-direction: column;
+      height: 400px;
+    }
+
+    .chat-output {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .message {
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: small;
+    }
+
+    .bot-message {
+      background: #ebebeb;
+      font-size: small;
+    }
+
+    .user-message {
+      background: #d4f1f4;
+      text-align: right;
+    }
+
+    .chat-input {
+      display: flex;
+      padding: 10px;
+      gap: 10px;
+    }
+
+    #question-select {
+      flex: 1;
+      padding: 1px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    #send-btn {
+      padding: 8px 12px;
+      background-color: #21325E;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #send-btn:hover {
+      background-color: #17213e;
+    }
+  </style>
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
+  
   <div class="site-wrap">
+
+    <!-- whatsapp -->
+    <a
+    href="https://wa.me/9167192594"
+    class="whatsapp-button"
+    target="_blank"
+    aria-label="Chat on WhatsApp"
+  >
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo">
+  </a>
+<!-- end -->
+
+   <!-- Chatbot Icon -->
+   <div class="chatbot-icon" id="chatbot-icon">
+    <img src="https://cdn-icons-png.flaticon.com/512/9732/9732800.png" alt="Chatbot">
+  </div>
+
+  <!-- Chatbot Window -->
+  <div class="chatbot-container" id="chatbot-container">
+    <button class="close-btn" id="close-btn">&times;</button>
+    <h4>Chatbot</h4>
+    <div class="chat-window">
+      <div class="chat-output" id="chat-output">
+        <div class="message bot-message">Hi! I'm your support chatbot. How can I assist you today?</div>
+      </div>
+      <div class="chat-input">
+        <select id="question-select">
+          <option value="" disabled selected>Choose a question...</option>
+          <option value="q1">What is your return policy?</option>
+          <option value="q2">How long does shipping take?</option>
+          <option value="q3">Do you offer technical support?</option>
+        </select>
+        <button id="send-btn">Ask</button>
+      </div>
+    </div>
+  </div>
+  <!-- end -->
 
     <div class="site-mobile-menu site-navbar-target">
       <div class="site-mobile-menu-header">
@@ -88,6 +380,16 @@
                 <li><a href="#about-us" class="nav-link">About</a></li>
                 <li>
                   <a href="#services-section" class="nav-link">Services</a>
+                </li>
+                <li>
+                  <button class="open-popup-btn" id="open-popup-btn">View Portfolio</button>
+
+  <!-- Popup Window -->
+  <div class="overlay" id="overlay"></div>
+  <div class="popup" id="popup">
+    <button class="close-btn" id="close-btn">&times;</button>
+    <iframe src="https://linktr.ee/8Bit_Tech_Solutions"></iframe>
+  </div>
                 </li>
                 <!-- <li class="has-children">
                   <a href="#about-section" class="nav-link">About</a>
@@ -156,7 +458,7 @@
 
       <section class="site-section" id="programming-languages-section">
         <div class="container">
-          <div class="row">
+          <div class="row" style="text-align: center;">
             <div class="col" data-aos="fade-in" data-aos-delay="0">
               <img src="images/c-logo (1).svg" alt="Image" class="img-fluid">
             </div>
@@ -193,7 +495,7 @@
                     <li>SEO & Google analytics</li>
                     <li>Image Editing & much more</li>
                   </ul>
-                  <p class="mb-4" style="color: darkblue; font-size: larger; border: 2px solid darkblue; padding: 5%; text-align: center;">Starting from ₹4499/-</p>
+                  <a href="#enquiry-section"><p class="mb-4" style="color: darkblue; font-size: larger; border: 2px solid darkblue; padding: 5%; text-align: center;">Starting from ₹4499/-</p></a>
                 </div>
               </div>
 
@@ -208,7 +510,7 @@
                     <li>Inventory Management</li>
                     <li>Payment Gateway Integration &amp; much more</li>
                   </ul>
-                  <p class="mb-4" style="color: darkblue; font-size: larger; border: 2px solid darkblue; padding: 5%; text-align: center;">Starting from ₹7999/-</p>
+                  <a href="#enquiry-section"><p class="mb-4" style="color: darkblue; font-size: larger; border: 2px solid darkblue; padding: 5%; text-align: center;">Starting from ₹7999/-</p></a>
                 </div>
               </div>
 
@@ -223,7 +525,7 @@
                     <li>API Integration</li>
                     <li>G-Suite setup &amp; much more</li>
                   </ul>
-                  <p class="mb-4" style="color: darkblue; font-size: larger; border: 2px solid darkblue; padding: 5%; text-align: center;">Starting from ₹5999/-</p>                  
+                  <a href="#enquiry-section"><p class="mb-4" style="color: darkblue; font-size: larger; border: 2px solid darkblue; padding: 5%; text-align: center;">Starting from ₹5999/-</p></a>                
                 </div>
               </div>
             </div>
@@ -355,35 +657,34 @@
 
       <section class="col-lg-12 site-section d-flex" id="enquiry-section">
         <!-- Enquiry Form -->
-        <div class="form-container flex-item">
+        <div class="form-container flex-item" style="margin: 20px;">
+          <div class="form-section">
           <h2 class="section-header">Get a Quote</h2>
           <form id="quoteForm" action="process_form.php" method="POST">
-            <!-- Full Name -->
-            <div class="form-group">
-              <label for="fullName">Full Name <span class="required">*</span></label>
-              <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
-            </div>
-      
-            <!-- Mobile -->
-            <div class="form-group">
-              <label for="mobile">Mobile Number <span class="required">*</span></label>
-              <div class="otp-container">
-                <input type="text" id="mobile" name="mobile" placeholder="Enter your mobile number" required>
+            <!-- Full Name and Mobile in one line -->
+            <div class="form-group" style="display: flex; gap: 20px; align-items: center;">
+              <div style="flex: 1;">
+                <label for="fullName">Full Name <span class="required">*</span></label>
+                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" style="width: 100%; padding: 10px;" required>
+              </div>
+              <div style="flex: 1;">
+                <label for="mobile">Mobile Number <span class="required">*</span></label>
+                <input type="text" id="mobile" name="mobile" placeholder="Enter your mobile number" style="width: 100%; padding: 10px;" required>
               </div>
             </div>
-      
+          
             <!-- Email -->
             <div class="form-group">
               <label for="email">Email</label>
               <input type="email" id="email" name="email" placeholder="Enter your email (optional)">
             </div>
-      
+          
             <!-- Company Name -->
             <div class="form-group">
               <label for="companyName">Company Name <span class="required">*</span></label>
               <input type="text" id="companyName" name="companyName" placeholder="Enter your company name" required>
             </div>
-      
+          
             <!-- Project Type -->
             <div class="form-group">
               <label for="projectType">Project Type <span class="required">*</span></label>
@@ -395,65 +696,81 @@
                 <option value="Digital Solution">Digital Solution</option>
               </select>
             </div>
-      
+          
             <!-- Budget -->
             <div class="form-group">
               <label for="budget">Budget</label>
               <input type="text" id="budget" name="budget" placeholder="Enter your budget (optional)">
             </div>
-      
+          
             <!-- Additional Notes -->
             <div class="form-group">
               <label for="notes">Additional Notes</label>
               <textarea id="notes" name="notes" rows="4" placeholder="Enter any additional information (optional)"></textarea>
             </div>
-      
+          
             <!-- Submit Button -->
             <button type="submit" id="submitBtn" class="btn">Submit</button>
           </form>
+          
+        </div>
         </div>
       
         <!-- Footer -->
-        <footer class="site-footer flex-item" style="margin-right: 50px;">
-          <div class="container">
+        <footer class="site-footer flex-item" style="margin: 20px;">
+          <div class="container details-section">
             <div class="row">
               <div class="col-md-12">
                 <div class="row">
-                  <div class="col-md-4">
+                  <!-- Details Section -->
+                  <div class="col-md-6">
+                    <h2 class="footer-heading mb-4">Details</h2>
+                    <a href="tel:+919167192594">
+                      <p class="contact-info">
+                        <span class="icon icon-phone"></span>&nbsp;9167192594
+                      </p>
+                    </a>
+                    <a href="mailto:info.techsreni@gmail.com">
+                      <p class="contact-info">
+                        <span class="icon icon-envelope"></span>&nbsp;info.techsreni@gmail.com
+                      </p>
+                    </a>
+                  </div>
+                  <!-- Links Section -->
+                  <div class="col-md-6">
                     <h2 class="footer-heading mb-4">Links</h2>
                     <ul class="list-unstyled">
                       <li><a href="#home-section">Home</a></li>
                       <li><a href="#about-us">About Us</a></li>
                       <li><a href="#services-section">Service</a></li>
-                      <!-- <li><a href="#">Terms & Conditions</a></li> -->
                     </ul>
                   </div>
-                  <div class="col-md-4" style="margin-left: -6%;">
-                    <h2 class="footer-heading mb-4">Details</h2>
-                    <!-- <ul class="list-unstyled">
-                      <li><a href="tel:+919167192594"><span class="icon icon-phone"></span><p class="contact-info">9167192594</p></a></li>
-                      <li><a href="mailto:info.techsreni@gmail.com"><span class="icon icon-envelope"></span><p class="contact-info">info.techsreni@gmail.com</p></a></li>
-                    </ul> -->
-                    <a href="tel:+919167192594"><p class="contact-info" style="font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-                      color: #21325E; margin-bottom: 1.5rem !important; display:flex; align-items: center; gap:10%"><span class="icon icon-phone"></span>9167192594</p></a>
-                    <a href="mailto:info.techsreni@gmail.com"><p class="contact-info" style="font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-                      color: #21325E; margin-bottom: 1.5rem !important; display:flex; align-items: center; gap:10%"><span class="icon icon-envelope"></span>info.techsreni@gmail.com</p></a>
-                  </div>
-                  <div class="col-md-3" style="margin-left: 8%;">
+          
+                  
+                </div>
+              </div>
+          
+              <!-- Follow Us and Virtual Meet Button -->
+              <div class="col-md-12">
+                <div class="row follow-virtual">
+                  <div class="col-md-6" style="text-align: left;">
                     <h2 class="footer-heading mb-4">Follow Us</h2>
                     <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
                     <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
                     <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
                   </div>
+                  <div class="col-md-6">
+                    <div class="footer-virtual-meet" style="text-align: center;">
+                      <button id="footerMeetButton" class="btn btn-primary" style="margin-top: 10px; width: 160px;">Set up Virtual Meet</button>
+                    </div>
+                  </div>
                 </div>
               </div>
-            
             </div>
           </div>
+          
         
-          <div class="footer-virtual-meet" style="margin-top: 20px; text-align: center;">
-            <button id="footerMeetButton" class="btn btn-primary" style="margin-top: 20px;">Set up Virtual Meet</button>
-          </div>
+          
           
           <div id="virtualMeetFormSecond" style="display: none; margin-top: 20px; padding: 20px; border: 1px solid #ccc; background: #f9f9f9;">
             <h3>Set Up a Virtual Meeting</h3>
@@ -645,8 +962,73 @@ document.getElementById('sendOtp').addEventListener('click', function () {
   }
 });
 </script>
-    
+<script>
+  const openPopupBtn = document.getElementById("open-popup-btn");
+  const closeBtn = document.getElementById("close-btn");
+  const popup = document.getElementById("popup");
+  const overlay = document.getElementById("overlay");
 
+  // Open popup
+  openPopupBtn.addEventListener("click", () => {
+    popup.style.display = 'block';
+    overlay.style.display = 'block';
+  });
+
+  // Close popup
+  closeBtn.addEventListener("click", () => {
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+  });
+
+  // Close popup when clicking on the overlay
+  overlay.addEventListener("click", () => {
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+  });
+</script>
+<script>
+  const chatbotIcon = document.getElementById("chatbot-icon");
+  const chatbotContainer = document.getElementById("chatbot-container");
+  const closeButton = document.getElementById("close-btn");
+
+  // Open Chatbot
+  chatbotIcon.addEventListener("click", () => {
+    chatbotContainer.style.display = "block";
+  });
+
+  // Close Chatbot
+  closeButton.addEventListener("click", () => {
+    chatbotContainer.style.display = "none";
+  });
+
+  const chatOutput = document.getElementById("chat-output");
+  const questionSelect = document.getElementById("question-select");
+  const sendBtn = document.getElementById("send-btn");
+
+  const faqAnswers = {
+    q1: "Our return policy allows returns within 30 days of purchase with a valid receipt.",
+    q2: "Shipping typically takes 5-7 business days, depending on your location.",
+    q3: "Yes, we offer 24/7 technical support through our help center.",
+  };
+
+  sendBtn.addEventListener("click", () => {
+    const selectedQuestion = questionSelect.value;
+    if (selectedQuestion) {
+      addMessage("user", questionSelect.options[questionSelect.selectedIndex].text);
+      setTimeout(() => {
+        addMessage("bot", faqAnswers[selectedQuestion]);
+      }, 500); // Simulate response delay
+    }
+  });
+
+  function addMessage(sender, text) {
+    const messageDiv = document.createElement("div");
+    messageDiv.className = `message ${sender}-message`;
+    messageDiv.textContent = text;
+    chatOutput.appendChild(messageDiv);
+    chatOutput.scrollTop = chatOutput.scrollHeight; // Scroll to bottom
+  }
+</script>
     <script src="js/main.js"></script>
 </body>
   </html>
